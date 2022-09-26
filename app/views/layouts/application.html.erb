@@ -12,9 +12,12 @@
     <%= render 'layouts/header' %>
       <main>
         <p id="notice"><%= notice %></p>
-        <div class="d-flex justify-content-center md-2">
-          <%= render 'searches/form' %>
-        </div>
+
+        <% unless current_page?(root_path) %>
+          <div class="d-flex justify-content-center md-2">
+            <%= render 'searches/form' %>
+          </div>
+        <% end %>
         <%= yield %>
       </main>
     <%= render 'layouts/footer' %>
