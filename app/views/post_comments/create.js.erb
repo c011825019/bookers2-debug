@@ -1,2 +1,3 @@
 $('.form').val("")
+$('.book_comments_counter').html("<%= j(render 'post_comments/counter', book: @comment.book) %>")
 $('.index').html("<%= j(render 'post_comments/index', book: @comment.book) %>")
