@@ -1,6 +1,13 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <%= render 'layouts/errors', obj: @book %>
+    <%= form_with model: @q, url: books_path, method: :get, local: true do |f| %>
+      <% Category.all.each do |category| %>
+        <%= f.check_box :categorys_id_eq_any, { multiple: true, checked: category[:checked], disabled: category[:disabled], include_hidden: false }, category[:id] %>
+        <label><%= category.name %></label>
+      <% end %>
+      <%= f.submit "検索" %>
+    <% end %>
     <div class='col-md-3'>
       <h2>User info</h2>
       <%= render 'users/info', user: current_user %>
@@ -10,10 +17,8 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <p>
-        <%= link_to '新しい順', books_path(latest: "true") %>|
-        <%= link_to '古い順', books_path(old: "true") %>|
-        <%= link_to '評価の高い順', books_path(star_count: "true") %>
-
+        <%= sort_link(@q, :created_at, "投稿日") %>|
+        <%= sort_link(@q, :rate, "評価") %>
       </p>
       <%= render 'index', books: @books%>
     </div>

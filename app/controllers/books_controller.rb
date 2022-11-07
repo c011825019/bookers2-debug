@@ -8,15 +8,8 @@ class BooksController < ApplicationController
   end
 
   def index
-    if params[:latest]
-      @books = Book.latest
-    elsif params[:old]
-      @books = Book.old
-    elsif params[:star_count]
-      @books = Book.star_count
-    else
-      @books = Book.all
-    end
+    @q = Book.ransack(params[:q])
+    @books = @q.result(distinct: true)
     @book = Book.new
   end
 
