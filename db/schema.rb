@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_23_083217) do
+ActiveRecord::Schema.define(version: 2022_11_07_051717) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,11 +40,26 @@ ActiveRecord::Schema.define(version: 2022_09_23_083217) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "book_categories", force: :cascade do |t|
+    t.integer "book_id", null: false
+    t.integer "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_book_categories_on_book_id"
+    t.index ["category_id"], name: "index_book_categories_on_category_id"
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.integer "user_id"
     t.float "rate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -87,4 +102,6 @@ ActiveRecord::Schema.define(version: 2022_09_23_083217) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "book_categories", "books"
+  add_foreign_key "book_categories", "categories"
 end

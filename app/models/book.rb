@@ -2,10 +2,12 @@ class Book < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :book_categorys, dependent: :destroy
+  has_many :categorys, through: :book_categorys
 
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
-  
+
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
   scope :star_count, -> {order(rate: :desc)}
