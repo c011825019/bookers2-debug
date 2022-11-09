@@ -2,9 +2,11 @@
   <div class='row'>
     <%= render 'layouts/errors', obj: @book %>
     <%= form_with model: @q, url: books_path, method: :get, local: true do |f| %>
-      <% Category.all.each do |category| %>
-        <%= f.check_box :categorys_id_eq_any, { multiple: true, checked: category[:checked], disabled: category[:disabled], include_hidden: false }, category[:id] %>
-        <label><%= category.name %></label>
+      <%= f.collection_check_boxes(:categorys_id_eq_any, Category.all, :id, :name) do |category| %>
+        <%= category.label do %>
+          <%= category.check_box %>
+          <%= category.text %>
+        <% end %>
       <% end %>
       <%= f.submit "検索" %>
     <% end %>
