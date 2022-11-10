@@ -15,6 +15,7 @@
         <%= link_to 'Destroy', book_post_comment_path(book, post_comment), method: :delete, class: "btn btn-sm btn-danger", remote: true %>
       <% end %>
     </td>
+    <td><%= render "post_comments/static_rate", post_comment: post_comment %></td>
   </tr>
   <% end %>
 </table>

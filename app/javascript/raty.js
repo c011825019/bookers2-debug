@@ -29,7 +29,7 @@ class Raty {
       cancelOn: 'cancel-on.png',
       cancelPlace: 'left',
       click: undefined,
-      half: true,
+      half: false,
       halfShow: true,
       hints: ['bad', 'poor', 'regular', 'good', 'gorgeous'],
       iconRange: undefined,

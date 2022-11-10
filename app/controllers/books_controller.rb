@@ -43,7 +43,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :rate, {:category_ids => []})
+    params.require(:book).permit(:title, :body, {:category_ids => []})
   end
 
   def ensure_correct_user

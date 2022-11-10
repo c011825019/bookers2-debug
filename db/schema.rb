@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 2022_11_07_051717) do
     t.string "title"
     t.text "body"
     t.integer "user_id"
-    t.float "rate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -73,6 +72,7 @@ ActiveRecord::Schema.define(version: 2022_11_07_051717) do
 
   create_table "post_comments", force: :cascade do |t|
     t.text "comment"
+    t.float "rate"
     t.integer "user_id"
     t.integer "book_id"
     t.datetime "created_at", precision: 6, null: false
